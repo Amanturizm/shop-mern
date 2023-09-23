@@ -3,6 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import config from './config';
 import usersRouter from './routes/users';
+import categoriesRouter from './routes/categories';
 
 const app = express();
 const port = 8000;
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/users', usersRouter);
+app.use('/categories', categoriesRouter);
 
 app.get('*', (_, res) => res.sendStatus(404));
 
