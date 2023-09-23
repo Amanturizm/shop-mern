@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useRoutes from './routes';
-import { useAppSelector } from './app/hook';
+import { useAppDispatch, useAppSelector } from './app/hook';
 import Layout from './components/Layout';
+import { ThemeProvider } from '@mui/material';
+import theme from './theme';
+import { fetchCategories } from './features/categories/categoriesThunk';
 
 const App = () => {
+  const dispatch = useAppDispatch();
   const { user } = useAppSelector(state => state.users);
   const routes = useRoutes(!!user);
 
+  useEffect(() => {
+    console.log('ok');
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
   return (
     <Layout>
-      {routes}
+      <ThemeProvider theme={theme}>
+        {routes}
+      </ThemeProvider>
     </Layout>
   );
 };

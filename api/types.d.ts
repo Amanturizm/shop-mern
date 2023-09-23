@@ -15,6 +15,7 @@ export interface ICategory {
 
 export interface IProduct {
   user: Types.ObjectId;
+  category: Types.ObjectId;
   title: string;
   description: string;
   price: number;

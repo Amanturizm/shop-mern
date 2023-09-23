@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
 import { Logout } from '@mui/icons-material';
+import AddIcon from '@mui/icons-material/Add';
 import { IUser } from '../types';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   user: IUser;
@@ -9,6 +11,7 @@ interface Props {
 }
 
 const ToolbarMenu: React.FC<Props> = ({ user, onLogout }) => {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | undefined>(undefined);
 
   const open = Boolean(anchorEl);
@@ -86,6 +89,10 @@ const ToolbarMenu: React.FC<Props> = ({ user, onLogout }) => {
           <Avatar /> {user.nickname}
         </MenuItem>
         <Divider color="#ccc" />
+        <MenuItem onClick={() => navigate('/new-post')}
+        >
+          <AddIcon sx={{ mr: 1.5 }} /> New post
+        </MenuItem>
         <MenuItem onClick={onLogout}>
           <ListItemIcon>
             <Logout fontSize="small" sx={{ color: '#fff', marginLeft: .5 }} />

@@ -43,7 +43,7 @@ productsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, ne
       category: req.body.category,
       title: req.body.title,
       description: req.body.description,
-      price: req.body.price,
+      price: parseFloat(req.body.price),
       image: req.file ? req.file.filename : null,
     });
 

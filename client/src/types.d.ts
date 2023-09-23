@@ -27,3 +27,20 @@ export interface IValidationError {
   name: string;
   _message: string;
 }
+
+export interface ICategory {
+  name: string;
+  title: string;
+}
+
+export interface IProduct {
+  _id: string;
+  user: string;
+  category: string;
+  title: string;
+  description: string;
+  price: string;
+  image: File | null;
+}
+
+export type TProductRequest = Omit<IProduct, '_id' | 'user'>;
