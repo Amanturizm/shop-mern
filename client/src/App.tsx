@@ -12,7 +12,6 @@ const App = () => {
   const routes = useRoutes(!!user);
 
   useEffect(() => {
-    console.log('ok');
     dispatch(fetchCategories());
   }, [dispatch]);
 

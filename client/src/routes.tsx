@@ -3,10 +3,11 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Signup from './features/users/Signup';
 import Login from './features/users/Login';
 import PostForm from './features/products/components/ProductForm';
+import Products from './features/products/Products';
 
 const useRoutes = (isAuthenticated: boolean) => (
   <Routes>
-    {/* Other routes */}
+    <Route path="/" element={<Products />} />
     {
       !isAuthenticated ?
         <>
