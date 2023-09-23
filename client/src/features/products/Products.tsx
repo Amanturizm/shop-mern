@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hook';
 import { useLocation } from 'react-router-dom';
 import { fetchCategoryProducts, fetchProducts } from './productsThunk';
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import Categories from '../categories/Categories';
 import Product from './components/Product';
 
@@ -12,7 +12,7 @@ const Products = () => {
   const query_category = searchParams.get('category');
 
   const dispatch = useAppDispatch();
-  const { products } = useAppSelector(state => state.products);
+  const { products, productsLoading } = useAppSelector(state => state.products);
 
   useEffect(() => {
     if (!products.length) {
@@ -40,6 +40,7 @@ const Products = () => {
            gap={2}
       >
         {
+          productsLoading ? <CircularProgress /> :
           products.map(product => (
             <Product product={product} key={product._id} />
           ))

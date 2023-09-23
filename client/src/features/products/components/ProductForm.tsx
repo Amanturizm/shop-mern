@@ -93,6 +93,7 @@ const ProductForm = () => {
       />
 
       <Select
+        required
         name="category"
         value={state.category}
         onChange={changeValue}
@@ -116,9 +117,16 @@ const ProductForm = () => {
         />
 
         <LoadingButton
-          sx={{ width: '100%' }}
+          sx={{
+            width: '100%',
+            ':disabled': {
+              pointerEvents: 'auto',
+              cursor: 'not-allowed',
+            }
+          }}
           type="submit"
           endIcon={<SendIcon/>}
+          disabled={productFormLoading}
           loading={productFormLoading}
           loadingPosition="end"
           variant="contained"

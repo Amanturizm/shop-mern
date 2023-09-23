@@ -45,3 +45,7 @@ export interface IProduct {
 }
 
 export type TProductRequest = Omit<IProduct, '_id' | 'user'>;
+
+export interface IProductFull extends IProduct {
+  user: IUser;
+}

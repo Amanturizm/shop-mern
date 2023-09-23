@@ -23,8 +23,8 @@ productsRouter.get('/', async (req, res, next) => {
 
 productsRouter.get('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id);
-    return product;
+    const product = await Product.findById(req.params.id).populate('user', '_id nickname phone');
+    return res.send(product);
   } catch (e) {
     if (e instanceof mongoose.Error.ValidationError) {
       return res.status(400).send(e);
@@ -54,6 +54,17 @@ productsRouter.post('/', auth, imagesUpload.single('image'), async (req, res, ne
       return res.status(400).send(e);
     }
 
+    return next(e);
+  }
+});
+
+productsRouter.delete('/:id', auth, async (req, res, next) => {
+  try {
+    const user = (req as RequestWithUser).user;
+
+    await Product.deleteOne({ _id: req.params.id });
+    return res.send({ message: 'Successful deleted!' });
+  } catch (e) {
     return next(e);
   }
 });

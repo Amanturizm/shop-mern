@@ -25,7 +25,6 @@ const ProductSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique: true,
     validate: {
       validator: function (this: HydratedDocument<IProduct>) {
         return !(!this.title);
@@ -36,7 +35,6 @@ const ProductSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
-    unique: true,
     validate: {
       validator: function (this: HydratedDocument<IProduct>) {
         return !(!this.description);
@@ -47,6 +45,7 @@ const ProductSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
+    min: [1, 'Price not valid!'],
     validate: {
       validator: function (this: HydratedDocument<IProduct>) {
         return !(!this.price);

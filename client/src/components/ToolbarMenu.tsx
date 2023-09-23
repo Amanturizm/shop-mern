@@ -89,7 +89,7 @@ const ToolbarMenu: React.FC<Props> = ({ user, onLogout }) => {
           <Avatar /> {user.nickname}
         </MenuItem>
         <Divider color="#ccc" />
-        <MenuItem onClick={() => navigate('/new-post')}
+        <MenuItem onClick={() => navigate('/new-product')}
         >
           <AddIcon sx={{ mr: 1.5 }} /> New post
         </MenuItem>
