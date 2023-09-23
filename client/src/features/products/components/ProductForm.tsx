@@ -99,7 +99,7 @@ const ProductForm = () => {
       >
         {
           categories.map(category => (
-            <MenuItem value={category.name}>{category.title}</MenuItem>
+            <MenuItem value={category.name} key={category._id}>{category.title}</MenuItem>
           ))
         }
       </Select>

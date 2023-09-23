@@ -29,6 +29,7 @@ export interface IValidationError {
 }
 
 export interface ICategory {
+  _id: string;
   name: string;
   title: string;
 }

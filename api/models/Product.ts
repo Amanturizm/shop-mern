@@ -14,11 +14,11 @@ const ProductSchema = new mongoose.Schema({
     },
   },
   category: {
-    type: Types.ObjectId,
+    type: String,
     ref: 'Category',
     required: true,
     validate: {
-      validator: async (value: Types.ObjectId) => Category.findById(value),
+      validator: async (value: string) => Category.findOne({ name: value }),
       message: 'Category does not exist!',
     },
   },

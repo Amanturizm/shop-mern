@@ -4,10 +4,12 @@ import Signup from './features/users/Signup';
 import Login from './features/users/Login';
 import PostForm from './features/products/components/ProductForm';
 import Products from './features/products/Products';
+import ProductFull from './features/products/components/ProductFull';
 
 const useRoutes = (isAuthenticated: boolean) => (
   <Routes>
-    <Route path="/" element={<Products />} />
+    <Route path="/products" element={<Products />} />
+    <Route path="/products/:id" element={<ProductFull />} />
     {
       !isAuthenticated ?
         <>
@@ -19,7 +21,7 @@ const useRoutes = (isAuthenticated: boolean) => (
           <Route path="/new-post" element={<PostForm />} />
         </>
     }
-    <Route path="*" element={<Navigate to="/" />} />
+    <Route path="*" element={<Navigate to="/products" />} />
   </Routes>
 );
 

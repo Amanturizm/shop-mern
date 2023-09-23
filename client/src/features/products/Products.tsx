@@ -1,27 +1,50 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hook';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { fetchCategoryProducts, fetchProducts } from './productsThunk';
 import { Box } from '@mui/material';
+import Categories from '../categories/Categories';
+import Product from './components/Product';
 
 const Products = () => {
-  const { category } = useParams() as { category: string };
+  const { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+  const query_category = searchParams.get('category');
+
   const dispatch = useAppDispatch();
   const { products } = useAppSelector(state => state.products);
 
   useEffect(() => {
     if (!products.length) {
-      if (category) {
-        dispatch(fetchCategoryProducts(category));
+      if (query_category) {
+        dispatch(fetchCategoryProducts(query_category));
       } else {
         dispatch(fetchProducts());
       }
     }
-  }, [products, category, dispatch]);
+  }, [products, query_category, dispatch]);
 
   return (
-    <Box component="div">
-      {JSON.stringify(products)}
+    <Box component="div"
+         display="flex"
+         width="90%"
+         margin="10% auto"
+         justifyContent="space-between"
+    >
+      <Categories />
+
+      <Box component="div"
+           display="flex"
+           width="75%"
+           flexWrap="wrap"
+           gap={2}
+      >
+        {
+          products.map(product => (
+            <Product product={product} key={product._id} />
+          ))
+        }
+      </Box>
     </Box>
   );
 };
