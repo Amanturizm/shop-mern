@@ -1,9 +1,10 @@
 import express from 'express';
-import cors from 'cors';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import config from './config';
 import usersRouter from './routes/users';
 import categoriesRouter from './routes/categories';
+import productsRouter from './routes/products';
 
 const app = express();
 const port = 8000;
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/users', usersRouter);
 app.use('/categories', categoriesRouter);
+app.use('/products', productsRouter);
 
 app.get('*', (_, res) => res.sendStatus(404));
 

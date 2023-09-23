@@ -5,7 +5,7 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from 'redux-persist
 import { usersReducer } from '../features/users/usersSlice';
 
 const usersPersistConfig = {
-  key: 'mydb:users',
+  key: 'shop:users',
   storage,
   whitelist: ['user'],
 };
